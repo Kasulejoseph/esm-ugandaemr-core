@@ -6,39 +6,37 @@
   },
   "pages": [
     {
-      "route": "/^appointments-list/",
-      "component": "appointmentsList",
-      "online": true,
-      "offline": true
+      "component": "root",
+      "route": "patient-queues"
     },
     {
-      "route": "/^patient-queues/",
-      "component": "patientQueues",
-      "online": true,
-      "offline": true
+      "component": "queueScreen",
+      "route": "patient-queues/screen"
     }
   ],
   "extensions": [
     {
       "name": "outpatient-side-nav-ext",
       "slot": "outpatient-sidebar-slot",
-      "component": "outpatientSideNavExt",
-      "online": true,
-      "offline": true
+      "component": "outpatientSideNavExt"
     },
     {
       "name": "patient-queues-dashboard-link",
-      "slot": "homepage-dashboard-slot",
       "component": "patientQueuesDashboardLink",
-      "online": true,
-      "offline": true
+      "slot": "homepage-dashboard-slot",
+      "privilege":[
+        "Queue Patients"
+      ],
+      "meta": {
+        "name": "patient-queues",
+        "slot": "patient-queues-dashboard-slot",
+        "title": "Patient queues"
+      }
     },
     {
-      "name": "home-dashboard",
+      "name": "patient-queues",
       "slot": "patient-queues-dashboard-slot",
-      "component": "homeDashboard",
-      "online": true,
-      "offline": true
+      "component": "root"
     },
     {
       "name": "edit-queue-entry-status-modal",
@@ -62,6 +60,10 @@
       "component": "clearAllQueueEntries"
     },
     {
+      "name": "pick-patient-queue-entry",
+      "component": "pickPatientEntryQueue"
+    },
+    {
       "name": "add-visit-to-queue-modal",
       "component": "addVisitToQueueModal"
     },
@@ -82,6 +84,19 @@
       "name": "add-queue-entry-widget",
       "slot": "add-queue-entry-slot",
       "component": "addQueueEntryWidget"
+    },
+    {
+      "name": "active-queue-patient-workspace",
+      "component": "activeQueuePatientWorkspace",
+      "slot": "action-menu-non-chart-items-slot"
+    },
+    {
+      "name": "active-queue-patients",
+      "component": "activeQueuePatients"
+    },
+    {
+      "name": "queue-patients-workspace",
+      "component": "queuePatientsWorkspace"
     }
   ]
 }

@@ -1,8 +1,8 @@
 import { defineConfigSchema, getAsyncLifecycle, getSyncLifecycle } from '@openmrs/esm-framework';
 import { configSchema } from './config-schema';
 import { moduleName } from './constants';
-import { createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { dashboardMeta } from './dashboard.meta';
+import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
+import { TBDashboardMeta, contactTracingDashboardtMeta, tbTreatmentDashboardMeta } from './dashboard.meta';
 
 export const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
 
@@ -15,14 +15,33 @@ export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
 }
 
-export const tbDashboardLink =
-  // t('Programs', 'Programs')
-  getSyncLifecycle(
-    createDashboardLink({
-      ...dashboardMeta,
-      moduleName,
-    }),
-    options,
-  );
+export const tbDashboardGroup = getSyncLifecycle(createDashboardGroup(TBDashboardMeta), options);
 
-export const tbOverviewDashboard = getAsyncLifecycle(() => import('./pages/tb/tb.component'), options);
+//  screening dashboard
+export const contactTracingDashboardLink = getSyncLifecycle(
+  createDashboardLink({
+    ...contactTracingDashboardtMeta,
+    moduleName,
+  }),
+  options,
+);
+export const contactTracingDashboardExt = getAsyncLifecycle(() => import('./pages/screening/screening.component'), {
+  featureName: 'contact-tracing',
+  moduleName,
+});
+
+//treatment and followup
+export const tbTreatmentDashboardLink = getSyncLifecycle(
+  createDashboardLink({
+    ...tbTreatmentDashboardMeta,
+    moduleName,
+  }),
+  options,
+);
+export const tbTreatmentDashboardExt = getAsyncLifecycle(
+  () => import('./pages/treatment/treatment-follow-up.component'),
+  {
+    featureName: 'tb-treatment',
+    moduleName,
+  },
+);

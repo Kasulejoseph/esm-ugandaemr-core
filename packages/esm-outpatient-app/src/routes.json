@@ -7,21 +7,65 @@
   "pages": [],
   "extensions": [
     {
-      "component": "opdDashboardLink",
+      "component": "opdDashboardGroup",
       "name": "opd-dashboard",
       "slot": "patient-chart-dashboard-slot",
-      "online": true,
-      "offline": true
+      "order": 20,
+      "meta": {
+        "title": "General",
+        "slotName": "opd-dashboard-slot"
+      }
     },
     {
-      "component": "opdDashboardExt",
-      "name": "opd-dashboard-ext",
+      "component": "opdAssessmentDashboardLink",
+      "name": "opd-assessment",
       "slot": "opd-dashboard-slot",
-      "online": true,
-      "offline": true,
       "meta": {
-        "columnSpan": 4
+        "slot": "opd-assessment-slot",
+        "title": "Clinical Assessment",
+        "path": "opd-assessment",
+        "columns": 1,
+        "layoutMode": "anchored"
       }
+    },
+    {
+      "name": "assessment-summary-ext",
+      "slot": "opd-assessment-slot",
+      "component": "opdAssessmentDashboardLinkExt"
+    },
+    {
+      "component": "opdTreatmentDashboardLink",
+      "name": "opd-treatment",
+      "slot": "opd-dashboard-slot",
+      "meta": {
+        "slot": "opd-treatment-slot",
+        "title": "Linkage and Referral",
+        "path": "opd-treatment",
+        "columns": 1,
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "opd-summary-ext",
+      "slot": "opd-treatment-slot",
+      "component": "opdTestingDashboardLinkExt"
+    },
+    {
+      "component": "opdPalliativeDashboardLink",
+      "name": "opd-palliative",
+      "slot": "opd-dashboard-slot",
+      "meta": {
+        "slot": "opd-palliatve-slot",
+        "title": "Palliative Care",
+        "path": "opd-palliative",
+        "columns": 1,
+        "layoutMode": "anchored"
+      }
+    },
+    {
+      "name": "opd-palliatve-ext",
+      "slot": "opd-palliatve-slot",
+      "component": "opdPalliativeDashboardLinkExt"
     }
   ]
 }
